@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Matter", "Inter";
+}
+
+@font-face {
+	font-family: "Matter";
+	src: url("/fonts/Matter-Light.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Matter";
+	src: url("/fonts/Matter-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Matter";
+	src: url("/fonts/Matter-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Matter";
+	src: url("/fonts/Matter-Semibold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Matter";
+	src: url("/fonts/Matter-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+}
+.font-mono {
+	font-family: monospace;
+}
+
+p {
+	font-weight: 300;
+}
+
+/* Define the bouncing animation */
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(10px);
+	}
+}
+
+/* Apply the animation to the arrow button div */
+.arrow-animation {
+	animation: bounce 1s infinite;
+	transition: transform 0.5s ease-in-out;
+}
+
+/* Pause the animation and apply scale on hover over the container */
+.cta-container:hover .arrow-animation {
+	animation-play-state: paused;
+	transform: scale(1.4);
+}
+
+/* Transition the entire container for smooth scaling */
+.cta-container {
+	transition: transform 0.5s ease-in-out;
+}
+
+textarea {
+	font-family: monospace;
+}

@@ -1,0 +1,27 @@
+import "./index.css";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import Home from "./pages/home/Home";
+import Generate from "./pages/generate/Generate";
+
+function App() {
+	return (
+		<div>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path="/"
+						element={<Home />}
+					/>
+					<Route
+						path="/generate"
+						element={<Generate />}
+					/>
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
+}
+
+export default App;
