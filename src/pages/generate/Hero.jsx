@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import InputField from "../../components/ui/InputField";
 import Dropdown from "../../components/ui/Dropdown";
 import JSONTextArea from "../../components/ui/JSONTextArea";
 import Stars from "../../svgs/Stars";
@@ -10,6 +9,7 @@ const Hero = () => {
 	const [selectedOption, setSelectedOption] = useState("");
 	const [schema, setSchema] = useState("");
 	const [mockData, setMockData] = useState("");
+	const baseURL = import.meta.env.VITE_ACCESS_CODE_URL;
 
 	const generateMockData = (e) => {
 		e.preventDefault();
@@ -17,12 +17,11 @@ const Hero = () => {
 		try {
 			const jsonData = JSON.parse(schema.trim());
 			axios
-				.post("http://localhost:5000/generate", jsonData)
+				.post(`${baseURL}/generate`, jsonData)
 				.then((response) => {
 					console.log(response);
 					setMockData(JSON.stringify(response.data, null, 2));
 				})
-
 				.catch((error) => {
 					console.error("Error fetching data: ", error);
 				});
@@ -45,21 +44,19 @@ const Hero = () => {
 					selectedOption={selectedOption}
 					setSelectedOption={setSelectedOption}
 				/>
-
 				<div className="mt-[80px]">
 					<JSONTextArea
 						value={schema}
 						onChange={(newValue) => setSchema(newValue)}
 						label={`Enter input data:`}
 						placeholder={`{
-  "name": "name",
-  "first_name": "first_name",
-  "last_name": "last_name",
-  "phone_number": "phone_number"
+	"name": "name",
+	"first_name": "first_name",
+	"last_name": "last_name",
+	"phone_number": "phone_number"
 }`}
 					/>
 				</div>
-
 				<div className="w-fit min-w-56 ml-auto mt-[13px]">
 					<button
 						onClick={generateMockData}
@@ -68,7 +65,6 @@ const Hero = () => {
 					</button>
 				</div>
 			</form>
-
 			{mockData && (
 				<div className="mt-[44px] flex flex-col">
 					<ResultContainer
