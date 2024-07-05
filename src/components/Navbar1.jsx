@@ -5,6 +5,10 @@ import Down from "../svgs/Down";
 import NigeriaFlag from "../svgs/NigeriaFlag";
 import MenuIcon from "../svgs/MenuIcon";
 import CloseIcon from "../svgs/CloseIcon";
+import CountryDropdown from "./ui/CountryDropdown";
+import GlobalButton from "./ui/GlobalButton";
+import clsx from "clsx";
+import Download from "../svgs/Download";
 
 export default function Navbar1() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -16,7 +20,8 @@ export default function Navbar1() {
 		},
 		{
 			name: "Docs",
-			link: "/",
+			link: "https://docs.google.com/document/d/1v54kp1rAD03pH6aj_APWlYgIUHNWuGI4ABwukNWVpbY/edit?usp=sharing",
+			target: "_blank",
 			hasDropdown: false,
 		},
 		{
@@ -32,7 +37,13 @@ export default function Navbar1() {
 	return (
 		<>
 			<nav className="lg:hidden fixed rounded-br-3xl rounded-bl-3xl top-0 z-40 w-full h-[100px] flex flex-row items-center justify-between bg-black-2 text-white-1 text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-				{!showMenu && <RandoLogo />}
+				{!showMenu && (
+					<Link
+						className="w-[100px] md:w-[150px] lg:w-[150px]"
+						to={"/"}>
+						<RandoLogo />
+					</Link>
+				)}
 
 				{!showMenu && (
 					<div onClick={handleToggleMenu}>
@@ -45,16 +56,15 @@ export default function Navbar1() {
 						style={{ opacity: 0.95, transition: "opacity 1s ease" }}
 						className="fixed flex flex-col gap-6 md:items-center md:justify-center min-h-screen w-screen bg-white-1 text-black-1 top-0 left-0 shadow-md p-[30px] z-40 overflow-y-auto ">
 						<div className="absolute top-5 left-10 mt-4 flex flex-row items-end gap-2">
-							<div className="flex flex-row items-center">
-								<small className="leading-3 text-xl">NG</small>
-								<Down />
-							</div>
-							<NigeriaFlag />
+							<CountryDropdown />
 						</div>
 
 						<ul className="mt-[184px] flex flex-col gap-10">
 							{navLinks.map((link, index) => (
-								<Link className="hover:underline underline-offset-4 transition-all duration-500 text-3xl">
+								<Link
+									to={link.link}
+									target={link.target}
+									className="hover:underline underline-offset-4 transition-all duration-500 text-3xl">
 									{link.name}
 								</Link>
 							))}
@@ -74,28 +84,32 @@ export default function Navbar1() {
 			</nav>
 
 			<nav className="hidden fixed rounded-br-3xl z-40 rounded-bl-3xl top-0 w-full h-[100px] lg:flex flex-row items-center justify-between bg-black-2 text-white-1 text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-				<RandoLogo />
+				<Link
+					className="w-[100px] md:w-[150px] lg:w-[150px]"
+					to={"/"}>
+					<RandoLogo />
+				</Link>
 
-				<div className="flex flex-row items-center justify-between gap-10 w-[35%]">
-					<div className="flex flex-row items-end gap-2">
-						<div className="flex flex-row items-center">
-							<small className="leading-3">NG</small>
-							<Down />
-						</div>
-						<NigeriaFlag />
-					</div>
+				<div className="flex flex-row items-center justify-between gap-10 ">
+					<CountryDropdown />
 
 					<ul className="flex flex-row gap-10">
 						{navLinks.map((link, index) => (
-							<Link className="hover:underline underline-offset-4 transition-all duration-500">
+							<Link
+								to={link.link}
+								target={link.target}
+								className="hover:underline underline-offset-4 transition-all duration-500">
 								{link.name}
 							</Link>
 						))}
 					</ul>
 
-					<button className="bg-white-1 text-black-2 px-6 py-3 min-w-32 rounded-full">
+					<GlobalButton
+						variant={`secondary`}
+						state={`default`}
+						size={`md`}>
 						Login
-					</button>
+					</GlobalButton>
 				</div>
 			</nav>
 		</>

@@ -86,10 +86,10 @@ export default function Footer() {
 				</div>
 			</div>
 
-			<div className="border-t border-gray/50 mt-[50px] text-center py-[30px]">
+			<p className="border-t border-gray/50 mt-[50px] font-normal text-center py-[30px]">
 				Built with <span className="text-red-500"> ♥ </span> by{" "}
 				<span className="textGradient">SAGE</span>
-			</div>
+			</p>
 		</footer>
 	);
 }
