@@ -9,12 +9,13 @@ import Dropdown2 from "./ui/Dropdown2";
 import { APP_USER_TEMPLATE } from "../templates/Templates";
 import { BANK_USER_TEMPLATE } from "../templates/Templates";
 import { PLACEHOLDER } from "../templates/Templates";
+import { useProvider } from "../context/ProviderContext";
 
 export const JSONForm = () => {
 	const [selectedTemplate, setSelectedTemplate] = useState("");
 	const [schema, setSchema] = useState("");
 	const [mockData, setMockData] = useState("");
-	const provider = localStorage.getItem("SELECTED_PROVIDER");
+	const { provider, setProvider } = useProvider();
 	const baseURL = import.meta.env.VITE_ACCESS_CODE_URL;
 
 	const generateMockData = (e) => {
@@ -22,11 +23,14 @@ export const JSONForm = () => {
 		console.log(schema);
 		try {
 			const jsonData = JSON.parse(schema.trim());
+
+			setMockData("");
 			axios
 				// .post(`http://localhost:5000/generate?provider=${provider}`, jsonData)
 				.post(`${baseURL}/generate?provider=${provider}`, jsonData)
 				.then((response) => {
 					console.log(response);
+
 					setMockData(JSON.stringify(response.data, null, 2));
 				})
 				.catch((error) => {
