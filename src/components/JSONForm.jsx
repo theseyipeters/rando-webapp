@@ -23,8 +23,8 @@ export const JSONForm = () => {
 		try {
 			const jsonData = JSON.parse(schema.trim());
 			axios
-				.post(`http://localhost:5000/generate?provider=${provider}`, jsonData)
-				// .post(`${baseURL}/generate?provider=${provider}`, jsonData)
+				// .post(`http://localhost:5000/generate?provider=${provider}`, jsonData)
+				.post(`${baseURL}/generate?provider=${provider}`, jsonData)
 				.then((response) => {
 					console.log(response);
 					setMockData(JSON.stringify(response.data, null, 2));
