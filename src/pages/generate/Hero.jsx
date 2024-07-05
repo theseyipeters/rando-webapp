@@ -3,32 +3,14 @@ import Dropdown from "../../components/ui/Dropdown";
 import JSONTextArea from "../../components/ui/JSONTextArea";
 import Stars from "../../svgs/Stars";
 import axios from "axios";
+import GlobalButton from "../../components/ui/GlobalButton";
+import Download from "../../svgs/Download";
 import ResultContainer from "../../components/ui/ResultContainer";
+import Dropdown2 from "../../components/ui/Dropdown2";
+import { JSONForm } from "../../components/JSONForm";
 
 const Hero = () => {
 	const [selectedOption, setSelectedOption] = useState("");
-	const [schema, setSchema] = useState("");
-	const [mockData, setMockData] = useState("");
-	const baseURL = import.meta.env.VITE_ACCESS_CODE_URL;
-
-	const generateMockData = (e) => {
-		e.preventDefault();
-		console.log(schema);
-		try {
-			const jsonData = JSON.parse(schema.trim());
-			axios
-				.post(`${baseURL}/generate`, jsonData)
-				.then((response) => {
-					console.log(response);
-					setMockData(JSON.stringify(response.data, null, 2));
-				})
-				.catch((error) => {
-					console.error("Error fetching data: ", error);
-				});
-		} catch (error) {
-			console.error("Invalid JSON schema format: ", error);
-		}
-	};
 
 	return (
 		<div className="w-full px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px] py-[220px]">
@@ -37,42 +19,26 @@ const Hero = () => {
 					Generate Random JSON Mock Data Instantly with Rando. &#123;_&#125;
 				</h1>
 			</div>
-			<form className="mt-[44px] flex flex-col">
-				<Dropdown
-					options={[`JSON`, `Table Format`]}
-					label={`Choose input data format`}
-					selectedOption={selectedOption}
-					setSelectedOption={setSelectedOption}
-				/>
-				<div className="mt-[80px]">
-					<JSONTextArea
-						value={schema}
-						onChange={(newValue) => setSchema(newValue)}
-						label={`Enter input data:`}
-						placeholder={`{
-	"name": "name",
-	"first_name": "first_name",
-	"last_name": "last_name",
-	"phone_number": "phone_number"
-}`}
+
+			<div className="mt-[84px] flex flex-row gap-8 h-full">
+				<form className={`w-full  flex flex-col`}>
+					<Dropdown
+						options={[`JSON`, `Table Format`]}
+						label={`Choose input data format`}
+						selectedOption={selectedOption}
+						setSelectedOption={setSelectedOption}
 					/>
-				</div>
-				<div className="w-fit min-w-56 ml-auto mt-[13px]">
-					<button
-						onClick={generateMockData}
-						className="flex flex-row gap-2 w-full items-center justify-center text-white-1 bg-black-2 px-6 py-4 text-xl rounded-full">
-						<Stars /> Generate
-					</button>
-				</div>
-			</form>
-			{mockData && (
-				<div className="mt-[44px] flex flex-col">
-					<ResultContainer
-						label={`Results`}
-						value={mockData}
-					/>
-				</div>
-			)}
+
+					{selectedOption === "JSON" && <JSONForm />}
+					{selectedOption === "Table Format" && (
+						<div className="h-[300px] flex items-center justify-center">
+							<p className="text-black-1 text-2xl font-medium">
+								Data format unavailable
+							</p>
+						</div>
+					)}
+				</form>
+			</div>
 		</div>
 	);
 };

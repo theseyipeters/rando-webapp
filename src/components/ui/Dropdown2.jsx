@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DownMd from "../../svgs/DownMd";
 
-export default function Dropdown({
+export default function Dropdown2({
 	label,
 	options,
 	selectedOption,
@@ -21,20 +21,19 @@ export default function Dropdown({
 
 	return (
 		<div className="w-full relative">
-			<label className="text-2xl">{label}</label>
-			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[13px] flex flex-row justify-between items-center pr-8">
+			{/* <label className="text-xl">{label}</label> */}
+			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[13px] flex flex-row justify-between items-center pr-4">
 				<input
 					type="text"
 					value={selectedOption}
 					onClick={toggleDropdown}
 					readOnly
-					placeholder="Select an option"
-					className="font-matter border-none w-full h-[92px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-3xl cursor-pointer"
+					placeholder="Select a template"
+					className="font-matter border-none w-full h-[42px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-xl cursor-pointer"
 				/>
-
 				<button
 					onClick={toggleDropdown}
-					className={`w-[50px] hover:scale-[1.4] transition-scale duration-500 ease-out ${
+					className={`w-[30px] hover:scale-[1.2] transition-scale duration-500 ease-out ${
 						isOpen ? "rotate-180" : ""
 					}`}>
 					<DownMd />
@@ -46,7 +45,7 @@ export default function Dropdown({
 						<li
 							key={index}
 							onClick={() => handleOptionClick(option)}
-							className="cursor-pointer py-2 px-6 text-2xl hover:bg-gray-200 h-[100px] flex items-center">
+							className="cursor-pointer py-2 px-6 text-xl hover:bg-gray-200 h-[70px] flex items-center font-light">
 							{option}
 						</li>
 					))}

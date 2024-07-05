@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import { javascript, javascriptLanguage } from "@codemirror/lang-javascript";
+import { json } from "@codemirror/lang-json";
+// import { autocompletion } from "@codemirror/autocomplete";
+import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 
 export default function JSONTextArea({
 	label,
@@ -18,22 +21,41 @@ export default function JSONTextArea({
 	}, [value]);
 
 	return (
-		<div className={`w-full font-mono ${className}`}>
+		<div className={`w-full`}>
 			<label className="text-2xl">{label}</label>
 
-			<CodeMirror
-				value={editorValue}
-				theme={"light"}
-				className={`mt-[13px] font-mono border border-[#5d5d5d] w-full min-h-[490px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-base p-5`}
-				extensions={[javascript()]}
+			<aside className="bg-[#282C34] font-mono">
+				<CodeMirror
+					value={editorValue}
+					theme={"light"}
+					height={100}
+					aria-autocomplete={"inline"}
+					autoCorrect="true"
+					className={`mt-[13px]  border border-[#5d5d5d] w-full bg-transparent placeholder:text-[#5D5D5D]/10 placeholder:font-mono focus:outline-none text-base`}
+					extensions={[json()]}
+					onChange={(value, viewUpdate) => {
+						setEditorValue(value);
+						onChange(value);
+					}}
+					onFocus={() => setPlaceholderText("")}
+					onBlur={() => setPlaceholderText(placeholderText)}
+					placeholder={placeholderText}
+					spellCheck={true}
+					style={{ fontFamily: "monospace" }}
+				/>
+			</aside>
+
+			{/* 
+			<Editor
+				height="490px"
+				theme="vs-dark"
+				defaultLanguage="json"
+				defaultValue=""
 				onChange={(value, viewUpdate) => {
 					setEditorValue(value);
 					onChange(value);
 				}}
-				onFocus={() => setPlaceholderText("")}
-				onBlur={() => setPlaceholderText(placeholderText)}
-				placeholder={placeholderText}
-			/>
+			/> */}
 		</div>
 	);
 }

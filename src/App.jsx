@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Home from "./pages/home/Home";
 import Generate from "./pages/generate/Generate";
+import Login from "./pages/auth/login/Login";
 
 function App() {
 	return (
@@ -17,6 +18,10 @@ function App() {
 					<Route
 						path="/generate"
 						element={<Generate />}
+					/>
+					<Route
+						path="/auth/login"
+						element={<Login />}
 					/>
 				</Routes>
 			</BrowserRouter>

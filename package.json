@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
+    "@lezer/json": "^1.0.2",
+    "@monaco-editor/react": "^4.6.0",
     "@uiw/react-codemirror": "^4.22.2",
     "axios": "^1.7.2",
+    "clsx": "^2.1.1",
     "codemirror": "^6.0.1",
     "react": "^18.3.1",
     "react-codemirror2": "^8.0.0",
@@ -20,7 +24,8 @@
     "react-monaco-editor": "^0.55.0",
     "react-router": "^6.24.0",
     "react-router-dom": "^6.24.0",
-    "react-simple-code-editor": "^0.13.1"
+    "react-simple-code-editor": "^0.13.1",
+    "react-simple-typewriter": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
