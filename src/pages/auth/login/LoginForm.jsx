@@ -25,7 +25,7 @@ export const LoginForm = () => {
 					</div>
 					<div>
 						<form className="w-full">
-							<InputField2 />
+							<InputField2 placeholder={`Input email address`} />
 						</form>
 						{/* <form className="w-full">
 						<InputField2 />

@@ -8,7 +8,7 @@ export const ProviderProvider = ({ children }) => {
 	const initialProvider = localStorage.getItem("SELECTED_PROVIDER") || "NG";
 	const [provider, setProvider] = useState(initialProvider);
 
-	// Optionally, you can add an effect to update the local storage when the provider changes
+	// Update local storage whenever the provider changes
 	useEffect(() => {
 		localStorage.setItem("SELECTED_PROVIDER", provider);
 	}, [provider]);

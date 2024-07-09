@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DownMd from "../../svgs/DownMd";
 
 export default function Dropdown2({
+	placeholder,
 	label,
 	options,
 	selectedOption,
@@ -28,7 +29,7 @@ export default function Dropdown2({
 					value={selectedOption}
 					onClick={toggleDropdown}
 					readOnly
-					placeholder="Select a template"
+					placeholder={placeholder}
 					className="font-matter border-none w-full h-[42px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-xl cursor-pointer"
 				/>
 				<button
@@ -45,7 +46,7 @@ export default function Dropdown2({
 						<li
 							key={index}
 							onClick={() => handleOptionClick(option)}
-							className="cursor-pointer py-2 px-6 text-xl hover:bg-gray-200 h-[70px] flex items-center font-light">
+							className="cursor-pointer py-2 px-6 text-xl hover:bg-gray-200 h-[70px] flex items-center font-light text-black-2">
 							{option}
 						</li>
 					))}

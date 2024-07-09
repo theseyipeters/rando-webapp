@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Generate from "./pages/generate/Generate";
 import Login from "./pages/auth/login/Login";
 import { ProviderProvider } from "../src/context/ProviderContext";
+import SignUp from "./pages/auth/signup/SignUp";
 
 function App() {
 	return (
@@ -24,6 +25,10 @@ function App() {
 						<Route
 							path="/auth/login"
 							element={<Login />}
+						/>
+						<Route
+							path="/auth/signup"
+							element={<SignUp />}
 						/>
 					</Routes>
 				</BrowserRouter>
