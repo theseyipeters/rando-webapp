@@ -54,7 +54,7 @@ export default function Navbar1() {
 				{showMenu && (
 					<div
 						style={{ opacity: 0.95, transition: "opacity 1s ease" }}
-						className="fixed flex flex-col gap-6 md:items-center md:justify-center min-h-screen w-screen bg-white-1 text-black-1 top-0 left-0 shadow-md p-[30px] z-40 overflow-y-auto ">
+						className="fixed flex flex-col gap-6 md:items-center md:justify-center min-h-screen w-full bg-white-1 text-black-1 top-0 left-0 shadow-md p-[30px] z-40 overflow-y-auto ">
 						<div className="absolute top-5 left-10 mt-4 flex flex-row items-end gap-2">
 							<CountryDropdown />
 						</div>
@@ -104,12 +104,14 @@ export default function Navbar1() {
 						))}
 					</ul>
 
-					<GlobalButton
-						variant={`secondary`}
-						state={`default`}
-						size={`md`}>
-						Login
-					</GlobalButton>
+					<Link to={"/auth/login"}>
+						<GlobalButton
+							variant={`secondary`}
+							state={`default`}
+							size={`md`}>
+							Login
+						</GlobalButton>
+					</Link>
 				</div>
 			</nav>
 		</>

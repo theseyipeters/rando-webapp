@@ -3,6 +3,14 @@ module.exports = {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
+			borderWidth: {
+				0.5: "0.5px",
+				1: "1px",
+				2: "2px",
+			},
+			boxShadow: {
+				custom: "0px 0.4px 14px 0px rgba(0, 0, 0, 0.11)",
+			},
 			colors: {
 				white: {
 					1: "#FFFFFF",

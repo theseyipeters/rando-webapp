@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import DownMd from "../../svgs/DownMd";
 
 export default function Dropdown2({
+	placeholder,
 	label,
 	options,
 	selectedOption,
 	setSelectedOption,
+	isAuthenticated,
 }) {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -15,25 +17,26 @@ export default function Dropdown2({
 	};
 
 	const handleOptionClick = (option) => {
-		setSelectedOption(option);
-		setIsOpen(false);
+		if (!option.isProtected || isAuthenticated) {
+			setSelectedOption(option.name);
+			setIsOpen(false);
+		}
 	};
 
 	return (
 		<div className="w-full relative">
-			{/* <label className="text-xl">{label}</label> */}
 			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[13px] flex flex-row justify-between items-center pr-4">
 				<input
 					type="text"
 					value={selectedOption}
 					onClick={toggleDropdown}
 					readOnly
-					placeholder="Select a template"
-					className="font-matter border-none w-full h-[42px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-xl cursor-pointer"
+					placeholder={placeholder}
+					className="font-matter border-none w-full h-[42px] bg-transparent font-light placeholder:text-[#5D5D5D]/30 focus:outline-none text-base lg:text-xl cursor-pointer"
 				/>
 				<button
 					onClick={toggleDropdown}
-					className={`w-[30px] hover:scale-[1.2] transition-scale duration-500 ease-out ${
+					className={`w-[20px] lg:w-[30px] hover:scale-[1.2] transition-scale duration-500 ease-out ${
 						isOpen ? "rotate-180" : ""
 					}`}>
 					<DownMd />
@@ -45,8 +48,22 @@ export default function Dropdown2({
 						<li
 							key={index}
 							onClick={() => handleOptionClick(option)}
-							className="cursor-pointer py-2 px-6 text-xl hover:bg-gray-200 h-[70px] flex items-center font-light">
-							{option}
+							className={`${
+								option.isProtected && !isAuthenticated
+									? "cursor-not-allowed"
+									: "cursor-pointer"
+							} relative py-2 px-6 text-base lg:text-xl hover:bg-gray-200 h-[70px] flex items-center font-light text-black-2`}>
+							<span
+								className={`${
+									option.isProtected && !isAuthenticated ? "opacity-35" : ""
+								}`}>
+								{option.name}
+							</span>
+							{option.isProtected && !isAuthenticated && (
+								<span className="absolute top-3 right-5 text-xs border-0.5 border-red-600 text-red-600 rounded-full py-1 px-3">
+									Sign in required
+								</span>
+							)}
 						</li>
 					))}
 				</ul>

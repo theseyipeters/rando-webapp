@@ -10,32 +10,47 @@ import { APP_USER_TEMPLATE } from "../templates/Templates";
 import { BANK_USER_TEMPLATE } from "../templates/Templates";
 import { PLACEHOLDER } from "../templates/Templates";
 import { useProvider } from "../context/ProviderContext";
+import { useSelector } from "react-redux";
+import WebAppService from "../services/WebAppService";
 
 export const JSONForm = () => {
 	const [selectedTemplate, setSelectedTemplate] = useState("");
 	const [schema, setSchema] = useState("");
 	const [mockData, setMockData] = useState("");
 	const { provider, setProvider } = useProvider();
+	const { isAuthenticated } = useSelector((state) => state.auth);
 	const baseURL = import.meta.env.VITE_ACCESS_CODE_URL;
 
-	const generateMockData = (e) => {
+	const generateMockData = async (e) => {
 		e.preventDefault();
 		console.log(schema);
 		try {
 			const jsonData = JSON.parse(schema.trim());
 
 			setMockData("");
-			axios
-				// .post(`http://localhost:5000/generate?provider=${provider}`, jsonData)
-				.post(`${baseURL}/generate?provider=${provider}`, jsonData)
-				.then((response) => {
-					console.log(response);
+			const generateDataResponse = await WebAppService.generateJSON(
+				jsonData,
+				provider
+			);
+			console.log(generateDataResponse);
+			setMockData(JSON.stringify(generateDataResponse.data, null, 2));
+		} catch (error) {
+			console.error("Invalid JSON schema format: ", error);
+		}
+	};
+	const generateMockDataWithAuth = async (e) => {
+		e.preventDefault();
+		console.log(schema);
+		try {
+			const jsonData = JSON.parse(schema.trim());
 
-					setMockData(JSON.stringify(response.data, null, 2));
-				})
-				.catch((error) => {
-					console.error("Error fetching data: ", error);
-				});
+			setMockData("");
+			const generateDataResponse = await WebAppService.generateJSONData(
+				jsonData,
+				provider
+			);
+			console.log(generateDataResponse);
+			setMockData(JSON.stringify(generateDataResponse.data, null, 2));
 		} catch (error) {
 			console.error("Invalid JSON schema format: ", error);
 		}
@@ -49,8 +64,19 @@ export const JSONForm = () => {
 		}
 	}, [selectedTemplate]);
 
+	const templateOptions = [
+		{
+			name: "App User Template",
+			isProtected: true,
+		},
+		{
+			name: "Bank User Template",
+			isProtected: false,
+		},
+	];
+
 	return (
-		<div className="w-full flex flex-row gap-6">
+		<div className="w-full flex flex-col lg:flex-row gap-6">
 			<div className="w-full mt-[80px]">
 				<JSONTextArea
 					value={schema}
@@ -59,10 +85,12 @@ export const JSONForm = () => {
 					placeholder={PLACEHOLDER}
 				/>
 				<div className="w-full flex flex-row items-center justify-between  mt-[13px]">
-					<div className={` ${mockData ? "w-full" : "w-[30%"}`}>
+					<div className={` ${mockData ? "w-full" : "w-full lg:w-[30%]"}`}>
 						<Dropdown2
-							options={["App User Template", "Bank User Template"]}
+							isAuthenticated={isAuthenticated}
+							options={templateOptions}
 							label={`Choose template`}
+							placeholder={`Choose template`}
 							selectedOption={selectedTemplate}
 							setSelectedOption={setSelectedTemplate}
 						/>
@@ -81,7 +109,9 @@ export const JSONForm = () => {
 						</GlobalButton>
 						<GlobalButton
 							className="flex flex-row gap-2  w-full items-center justify-center"
-							onClick={generateMockData}
+							onClick={
+								isAuthenticated ? generateMockDataWithAuth : generateMockData
+							}
 							variant={`primary`}
 							state={`default`}
 							size={`md`}>

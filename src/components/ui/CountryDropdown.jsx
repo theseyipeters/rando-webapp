@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Down from "../../svgs/Down";
 import { NigeriaFlag, USAFlag } from "../../svgs/Flags";
+import { useProvider } from "../../context/ProviderContext";
 
 const CountryDropdown = () => {
 	const [selectedCountry, setSelectedCountry] = useState("NG");
+	const { provider, setProvider } = useProvider();
 
 	// Fetch initial selectedCountry value from localStorage on component mount
 	useEffect(() => {
@@ -16,6 +18,7 @@ const CountryDropdown = () => {
 	const handleChange = (event) => {
 		const country = event.target.value;
 		setSelectedCountry(country);
+		setProvider(country);
 		localStorage.setItem("SELECTED_PROVIDER", country);
 	};
 

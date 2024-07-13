@@ -98,3 +98,8 @@ textarea {
 	max-height: 700px;
 	width: 100%;
 }
+
+.active-link {
+	background-color: #242424;
+	color: white;
+}
