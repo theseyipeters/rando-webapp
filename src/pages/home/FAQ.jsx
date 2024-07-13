@@ -79,7 +79,7 @@ export default function FAQ() {
 	];
 	return (
 		<section className="py-[100px] h-fit bg-black-2 text-white-1 text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-			<div className="text-center flex flex-col items-center">
+			<div className="text-center flex flex-col gap-4 items-center">
 				<p className="font-light">
 					Create, customize, and download mock data for your projects with ease.
 				</p>

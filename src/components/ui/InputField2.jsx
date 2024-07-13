@@ -18,7 +18,7 @@ export default function InputField2({
 					placeholder={placeholder}
 					value={value}
 					name={name}
-					className="border-none w-full h-[48px] font-matter py-5  bg-transparent placeholder:text-white-1/30 focus:outline-none text-xl text-white-1"
+					className="border-none w-full h-[48px] font-matter py-5  bg-transparent  placeholder:text-white-1/30 focus:outline-none text-xl text-white-1"
 				/>
 
 				<button

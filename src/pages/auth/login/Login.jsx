@@ -14,7 +14,7 @@ export default function Login() {
 						<RandoLogo />
 					</Link>
 
-					<h1 className="text-[64px] leading-[75px] w-full font-medium tracking-[-2.28px}">
+					<h1 className="text-[64px] leading-[75px] w-full font-medium tracking-tight">
 						Generate Random JSON Mock Data Instantly with Rando. &#123;_&#125;
 					</h1>
 				</div>

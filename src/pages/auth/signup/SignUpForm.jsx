@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import RandoLogo from "../../../svgs/RandoLogo";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import CountryDropdown from "../../../components/ui/CountryDropdown";
 import InputField2 from "../../../components/ui/InputField2";
 import Dropdown2 from "../../../components/ui/Dropdown2";
 import { validateEmail, validatePasswords } from "../../../utils/validation";
 import ArrowRightMd from "../../../svgs/ArrowRightMd";
+import WebAppService from "../../../services/WebAppService";
+import Dropdown2Dark from "../../../components/ui/Dropdown2Dark";
 
 export const SignUpForm = () => {
 	const [step, setStep] = useState(1);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		email: "",
 		username: "",
 		role: "",
 		password: "",
-		verifyPassword: "",
+		confirm_password: "",
 	});
 	const [errors, setErrors] = useState({
 		email: "",
 		username: "",
 		role: "",
 		password: "",
-		verifyPassword: "",
+		confirm_password: "",
 	});
 	const [successMessage, setSuccessMessage] = useState("");
+	const roleOptions = [""];
 
 	const handleNextStep = () => {
 		let valid = true;
@@ -36,7 +41,7 @@ export const SignUpForm = () => {
 		setFormData({ ...formData, [name]: value });
 
 		// Perform validation as user types
-		if (name === "verifyPassword") {
+		if (name === "confirm_password") {
 			const errorMessage = validatePasswords(
 				formData.password,
 				value,
@@ -57,13 +62,40 @@ export const SignUpForm = () => {
 		setFormData({ ...formData, role });
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (
-			validatePasswords(formData.password, formData.verifyPassword, setErrors)
+			validatePasswords(formData.password, formData.confirm_password, setErrors)
 		) {
 			console.log(formData);
-			// Handle form submission
+			setIsSubmitting(true);
+
+			try {
+				await WebAppService.signUp(formData);
+
+				// Reset form fields after successful submission
+				setFormData({
+					email: "",
+					username: "",
+					role: "",
+					password: "",
+					confirm_password: "",
+				});
+				setStep(1);
+
+				setTimeout(() => {
+					navigate("/auth/login");
+				}, 3000);
+			} catch (error) {
+				if (error.response.status === 409) {
+					const signUpErrorMessage =
+						error.response.data.error || "Something went wrong. Please retry.";
+				} else {
+					console.error(error);
+				}
+			}
+
+			setIsSubmitting(false);
 		}
 	};
 
@@ -116,9 +148,19 @@ export const SignUpForm = () => {
 							)}
 							{step === 3 && (
 								<div>
-									<Dropdown2
+									<Dropdown2Dark
 										placeholder="Select role"
-										options={["User", "Admin", "Moderator"]}
+										options={[
+											"Frontend Engineer",
+											"Backend Engineer",
+											"Full-stack Engineer",
+											"Mobile Developer",
+											"DevOps Engineer",
+											"API Developers",
+											"Data Analyst",
+											"Data Scientist",
+											"Project Manager",
+										]}
 										selectedOption={formData.role}
 										setSelectedOption={handleRoleChange}
 									/>
@@ -150,12 +192,14 @@ export const SignUpForm = () => {
 									<InputField2
 										placeholder="Verify password"
 										type="password"
-										name="verifyPassword"
-										value={formData.verifyPassword}
+										name="confirm_password"
+										value={formData.confirm_password}
 										onChange={handleChange}
 									/>
-									{errors.verifyPassword && (
-										<p className="text-red-500 mt-4">{errors.verifyPassword}</p>
+									{errors.confirm_password && (
+										<p className="text-red-500 mt-4">
+											{errors.confirm_password}
+										</p>
 									)}
 									{successMessage && (
 										<p className="text-green-500 mt-4">{successMessage}</p>
