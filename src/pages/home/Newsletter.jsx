@@ -11,7 +11,7 @@ export default function Newsletter() {
 					placeholder="kylexy@example.com"
 					className="border-none w-full h-[92px]  bg-transparent placeholder:text-[#5D5D5D] focus:outline-none text-3xl"
 				/>
-				<button className="hover:scale-[1.4] transition-scale duration-500 ease-out">
+				<button className=" w-[100px] hover:scale-[1.4] transition-scale duration-500 ease-out">
 					<ArrowRightMd />
 				</button>
 			</div>

@@ -6,6 +6,9 @@ import Home from "./pages/home/Home";
 import Generate from "./pages/generate/Generate";
 import Login from "./pages/auth/login/Login";
 import { ProviderProvider } from "../src/context/ProviderContext";
+import SignUp from "./pages/auth/signup/SignUp";
+import Dashboard from "./pages/dashboard/Dashboard";
+import { ActivityLog } from "./pages/activity-log/ActivityLog";
 
 function App() {
 	return (
@@ -24,6 +27,18 @@ function App() {
 						<Route
 							path="/auth/login"
 							element={<Login />}
+						/>
+						<Route
+							path="/auth/signup"
+							element={<SignUp />}
+						/>
+						<Route
+							path="/dashboard"
+							element={<Dashboard />}
+						/>
+						<Route
+							path="/activity-log"
+							element={<ActivityLog />}
 						/>
 					</Routes>
 				</BrowserRouter>

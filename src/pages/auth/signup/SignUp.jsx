@@ -1,9 +1,9 @@
 import React from "react";
-import { LoginForm } from "./LoginForm";
+import { SignUpForm } from "./SignUpForm";
 import RandoLogo from "../../../svgs/RandoLogo";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function SignUp() {
 	return (
 		<div className="h-screen min-w-screen flex flex-row">
 			<div className="w-1/2 flex flex-col items-center justify-center h-full bg-white-2 px-[40px] md:px-[50px] lg:px-[90px] xl:px-[120px]  relative">
@@ -14,13 +14,13 @@ export default function Login() {
 						<RandoLogo />
 					</Link>
 
-					<h1 className="text-[64px] leading-[75px] w-full font-medium tracking-tight">
+					<h1 className="text-[64px] leading-[75px] w-full font-medium tracking-[-2.28px}">
 						Generate Random JSON Mock Data Instantly with Rando. &#123;_&#125;
 					</h1>
 				</div>
 			</div>
 			<div className="w-1/2 relative h-full bg-black-2 flex flex-col items-center justify-center">
-				<LoginForm />
+				<SignUpForm />
 			</div>
 		</div>
 	);

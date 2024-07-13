@@ -1,12 +1,5 @@
 import React, { useState } from "react";
 import Dropdown from "../../components/ui/Dropdown";
-import JSONTextArea from "../../components/ui/JSONTextArea";
-import Stars from "../../svgs/Stars";
-import axios from "axios";
-import GlobalButton from "../../components/ui/GlobalButton";
-import Download from "../../svgs/Download";
-import ResultContainer from "../../components/ui/ResultContainer";
-import Dropdown2 from "../../components/ui/Dropdown2";
 import { JSONForm } from "../../components/JSONForm";
 
 const Hero = () => {

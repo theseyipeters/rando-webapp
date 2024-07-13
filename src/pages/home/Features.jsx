@@ -8,7 +8,7 @@ import OpenSource from "../../svgs/OpenSource";
 export default function Features() {
 	return (
 		<section className="text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-			<div>
+			<div className="flex flex-col gap-4">
 				<p className="font-light">
 					Create, customize, and download mock data for your projects with ease.
 				</p>

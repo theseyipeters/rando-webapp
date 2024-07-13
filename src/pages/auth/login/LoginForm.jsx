@@ -1,10 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import RandoLogo from "../../../svgs/RandoLogo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+	updateUser,
+	updateToken,
+	authenticate,
+} from "../../../store/authSlice";
 import CountryDropdown from "../../../components/ui/CountryDropdown";
-import InputField2 from "../../../components/ui/InputField2";
+import InputField3 from "../../../components/ui/InputField3";
+import PasswordInput from "../../../components/ui/PasswordInput";
+import GlobalButton from "../../../components/ui/GlobalButton";
+import WebAppService from "../../../services/WebAppService";
 
 export const LoginForm = () => {
+	const [step, setStep] = useState(1);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const [formData, setFormData] = useState({
+		username: "",
+		password: "",
+	});
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({
+			...formData,
+			[name]: value,
+		});
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log(formData);
+		setIsSubmitting(true);
+
+		try {
+			const loginResponse = await WebAppService.login(formData);
+
+			const { data } = loginResponse;
+			console.log(data);
+
+			dispatch(
+				updateUser({
+					email: data.email,
+					username: data.username,
+					role: data.role,
+					created_at: data.created_at,
+					updated_at: data.updated_at,
+					id: data.id,
+					isNew: true,
+				})
+			);
+			dispatch(updateToken(data.token));
+			const authToken = data.token;
+			localStorage.setItem("authToken", authToken);
+			dispatch(authenticate());
+
+			setFormData({
+				username: "",
+				password: "",
+			});
+
+			window.history.back();
+		} catch (error) {
+			console.error(error);
+		}
+
+		setIsSubmitting(false);
+	};
+
 	return (
 		<div className="w-full px-[40px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
 			<div className="w-full flex flex-col items-center justify-center">
@@ -24,12 +91,32 @@ export const LoginForm = () => {
 						<p className="text-2xl font-light">Sign in to your Rando account</p>
 					</div>
 					<div>
-						<form className="w-full">
-							<InputField2 />
+						<form
+							className="w-full flex flex-col gap-8"
+							onSubmit={handleSubmit}>
+							<InputField3
+								placeholder={`Input email address`}
+								name="username"
+								value={formData.username}
+								onChange={handleInputChange}
+							/>
+							<PasswordInput
+								placeholder={`Enter your password`}
+								name="password"
+								value={formData.password}
+								onChange={handleInputChange}
+							/>
+
+							<div className="mt-4">
+								<GlobalButton
+									type={`submit`}
+									variant={`secondary`}
+									state={`default`}
+									size={`lg`}>
+									Login
+								</GlobalButton>
+							</div>
 						</form>
-						{/* <form className="w-full">
-						<InputField2 />
-					</form> */}
 					</div>
 
 					<div className="flex flex-col gap-2 mt-[44px]">

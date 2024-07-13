@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HowItWorks = () => {
 	return (
 		<section className="mt-[100px] py-[100px] bg-white-1 text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-			<div className="text-center flex flex-col items-center">
+			<div className="text-center flex flex-col gap-4 items-center">
 				<p className="font-light">
 					Create, customize, and download mock data for your projects with ease.
 				</p>
