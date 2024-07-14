@@ -23,7 +23,6 @@ export const APP_USER_TEMPLATE = `{
 			}
 		],
 		"name":"name",
-		"id":"id",
 		"created_at":"createdAt"
     }
   ]

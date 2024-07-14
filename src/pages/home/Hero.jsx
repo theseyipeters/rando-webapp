@@ -13,7 +13,7 @@ export default function Hero() {
 					Create, customize, and download mock data for your projects with ease.
 				</p>
 
-				<div className="w-fit min-w-46">
+				<div className="w-fit min-w-48 font-matter mt-4">
 					<Link
 						to={"/generate"}
 						className="flex flex-row gap-2 w-full items-center justify-center text-black-2 bg-white-1 px-6 py-3 rounded-full">

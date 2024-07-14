@@ -8,6 +8,7 @@ import CloseIcon from "../svgs/CloseIcon";
 import CountryDropdown from "./ui/CountryDropdown";
 import GlobalButton from "./ui/GlobalButton";
 import { useSelector } from "react-redux";
+import RightArrow from "../svgs/RightArrow";
 
 export default function Navbar2() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -111,13 +112,22 @@ export default function Navbar2() {
 					)}
 
 					{isAuthenticated ? (
-						<div className="flex flex-row items-center gap-2">
-							<p className="text-base">Signed in as</p>
+						<div className="flex flex-col">
+							<div className="flex flex-row items-center gap-2">
+								<p className="text-xs">Signed in as:</p>
+								<p className="text-base text-black-2 font-medium">
+									@{user.username}
+								</p>
+							</div>
+
 							<Link
 								to={"/dashboard"}
 								target="_blank"
-								className="text-lg hover:underline underline-offset-4">
-								@{user.username}
+								className="underline underline-offset-4 text-sm flex flex-row items-center mt-1">
+								Go to Dashboard{" "}
+								<span className="w-6 ml-1">
+									<RightArrow />
+								</span>
 							</Link>
 						</div>
 					) : (

@@ -9,6 +9,8 @@ import { ProviderProvider } from "../src/context/ProviderContext";
 import SignUp from "./pages/auth/signup/SignUp";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { ActivityLog } from "./pages/activity-log/ActivityLog";
+import { MockData } from "./pages/mock-data/MockData";
+import { Templates } from "./pages/templates/Templates";
 
 function App() {
 	return (
@@ -39,6 +41,14 @@ function App() {
 						<Route
 							path="/activity-log"
 							element={<ActivityLog />}
+						/>
+						<Route
+							path="/mock-data"
+							element={<MockData />}
+						/>
+						<Route
+							path="/templates"
+							element={<Templates />}
 						/>
 					</Routes>
 				</BrowserRouter>

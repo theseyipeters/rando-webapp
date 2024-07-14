@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import RandoLogo from "../../../svgs/RandoLogo";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -14,15 +13,13 @@ import GlobalButton from "../../../components/ui/GlobalButton";
 import WebAppService from "../../../services/WebAppService";
 
 export const LoginForm = () => {
-	const [step, setStep] = useState(1);
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 	});
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -34,14 +31,11 @@ export const LoginForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(formData);
 		setIsSubmitting(true);
 
 		try {
 			const loginResponse = await WebAppService.login(formData);
-
 			const { data } = loginResponse;
-			console.log(data);
 
 			dispatch(
 				updateUser({
@@ -55,8 +49,7 @@ export const LoginForm = () => {
 				})
 			);
 			dispatch(updateToken(data.token));
-			const authToken = data.token;
-			localStorage.setItem("authToken", authToken);
+			localStorage.setItem("authToken", data.token);
 			dispatch(authenticate());
 
 			setFormData({
@@ -64,9 +57,11 @@ export const LoginForm = () => {
 				password: "",
 			});
 
-			window.history.back();
+			// Navigate to dashboard or desired route after successful login
+			navigate("/dashboard");
 		} catch (error) {
-			console.error(error);
+			console.error("Login error:", error);
+			// Handle error state or display error message to user
 		}
 
 		setIsSubmitting(false);
@@ -75,12 +70,6 @@ export const LoginForm = () => {
 	return (
 		<div className="w-full px-[40px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
 			<div className="w-full flex flex-col items-center justify-center">
-				<Link
-					className="flex lg:hidden w-[150px] absolute top-[10%] left-[40px] md:left-[50px] lg:left-[90px] xl:left-[120px]"
-					to={"/"}>
-					<RandoLogo />
-				</Link>
-
 				<div className="text-white-2 absolute top-[10%] right-[40px] md:right-[50px] lg:right-[90px] xl:right-[120px]">
 					<CountryDropdown />
 				</div>
@@ -95,13 +84,13 @@ export const LoginForm = () => {
 							className="w-full flex flex-col gap-8"
 							onSubmit={handleSubmit}>
 							<InputField3
-								placeholder={`Input email address`}
+								placeholder="Input username"
 								name="username"
 								value={formData.username}
 								onChange={handleInputChange}
 							/>
 							<PasswordInput
-								placeholder={`Enter your password`}
+								placeholder="Enter your password"
 								name="password"
 								value={formData.password}
 								onChange={handleInputChange}
@@ -109,11 +98,12 @@ export const LoginForm = () => {
 
 							<div className="mt-4">
 								<GlobalButton
-									type={`submit`}
-									variant={`secondary`}
-									state={`default`}
-									size={`lg`}>
-									Login
+									type="submit"
+									variant="secondary"
+									state={isSubmitting ? "loading" : "default"}
+									size="lg"
+									disabled={isSubmitting}>
+									{isSubmitting ? "Logging in..." : "Login"}
 								</GlobalButton>
 							</div>
 						</form>
@@ -121,17 +111,17 @@ export const LoginForm = () => {
 
 					<div className="flex flex-col gap-2 mt-[44px]">
 						<p className="text-2xl font-light">
-							Don’t have an account?
+							Don’t have an account?{" "}
 							<Link
-								to={"/auth/signup"}
+								to="/auth/signup"
 								className="text-teal-1">
-								{" "}
 								Create one
 							</Link>
 						</p>
 					</div>
 				</div>
 
+				{/* Links for terms, privacy policy, data agreement */}
 				<div className="text-white-1 flex flex-row gap-3 absolute bottom-[10%] font-light">
 					<Link className="font-light text-sm hover:text-teal-1 underline-offset-2 hover:underline">
 						Terms of use
