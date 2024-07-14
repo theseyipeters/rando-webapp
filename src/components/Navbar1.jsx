@@ -7,11 +7,12 @@ import MenuIcon from "../svgs/MenuIcon";
 import CloseIcon from "../svgs/CloseIcon";
 import CountryDropdown from "./ui/CountryDropdown";
 import GlobalButton from "./ui/GlobalButton";
-import clsx from "clsx";
-import Download from "../svgs/Download";
+import { useSelector } from "react-redux";
 
 export default function Navbar1() {
 	const [showMenu, setShowMenu] = useState(false);
+
+	const { user, isAuthenticated } = useSelector((state) => state.auth);
 	const navLinks = [
 		{
 			name: "API",
@@ -93,25 +94,39 @@ export default function Navbar1() {
 				<div className="flex flex-row items-center justify-between gap-10 ">
 					<CountryDropdown />
 
-					<ul className="flex flex-row gap-10">
-						{navLinks.map((link, index) => (
-							<Link
-								to={link.link}
-								target={link.target}
-								className="hover:underline underline-offset-4 transition-all duration-500">
-								{link.name}
-							</Link>
-						))}
-					</ul>
+					{isAuthenticated ? null : (
+						<ul className="flex flex-row gap-10">
+							{navLinks.map((link, index) => (
+								<Link
+									to={link.link}
+									target={link.target}
+									className="hover:underline underline-offset-4 transition-all duration-500">
+									{link.name}
+								</Link>
+							))}
+						</ul>
+					)}
 
-					<Link to={"/auth/login"}>
-						<GlobalButton
-							variant={`secondary`}
-							state={`default`}
-							size={`md`}>
-							Login
-						</GlobalButton>
-					</Link>
+					{isAuthenticated ? (
+						<div className="flex flex-row items-center gap-2">
+							<p className="text-base">Signed in as</p>
+							<Link
+								to={"/dashboard"}
+								target="_blank"
+								className="text-lg hover:underline underline-offset-4">
+								@{user.username}
+							</Link>
+						</div>
+					) : (
+						<Link to={"/auth/login"}>
+							<GlobalButton
+								variant={`secondary`}
+								state={`default`}
+								size={`md`}>
+								Login
+							</GlobalButton>
+						</Link>
+					)}
 				</div>
 			</nav>
 		</>

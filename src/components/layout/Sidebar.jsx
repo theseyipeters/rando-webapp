@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import RandoLogo2 from "../../svgs/RandoLogo2";
 import Arrow from "../../svgs/Arrow";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/authSlice";
 
 export default function Sidebar() {
 	const [isCollapsed, setIsCollapsed] = useState(false);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const navItems = [
 		{
@@ -51,6 +57,13 @@ export default function Sidebar() {
 
 	const toggleSidebar = () => {
 		setIsCollapsed(!isCollapsed);
+	};
+
+	const handleLogout = () => {
+		dispatch(logout());
+		localStorage.removeItem("auth-state");
+		localStorage.removeItem("authToken");
+		navigate("/");
 	};
 	return (
 		<div
@@ -115,7 +128,9 @@ export default function Sidebar() {
 						Trash
 					</NavLink>
 
-					<button className="cursor-pointer px-[45px] h-[50px] py-3 font-light text-center text-red-700 hover:bg-red-700 hover:text-white-1">
+					<button
+						onClick={handleLogout}
+						className="cursor-pointer px-[45px] h-[50px] py-3 font-light text-center text-red-700 hover:bg-red-700 hover:text-white-1">
 						Logout
 					</button>
 				</ul>

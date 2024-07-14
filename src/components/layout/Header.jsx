@@ -46,8 +46,8 @@ export default function Header() {
 						</div>
 					</div>
 
-					<div className="flex flex-row gap-[50px] items-center">
-						<div className={`lg:block hidden w-full ml-[50px] text-black-1`}>
+					<div className="flex flex-row items-center justify-between max-w-[500px] min-w-[400px]">
+						<div className={`lg:block hidden w-fit text-black-1`}>
 							<ul className="flex flex-row w-full gap-4">
 								{navItems.map((item, index) => (
 									<NavLink
@@ -69,7 +69,7 @@ export default function Header() {
 							</ul>
 						</div>
 
-						<div className="hidden lg:flex flex-row items-center gap-4">
+						<div className="w-fit hidden lg:flex flex-row items-center gap-4">
 							<div>
 								<span className="uppercase w-[60px] h-[60px] rounded-full bg-black-1 text-white-1 flex items-center justify-center text-3xl">
 									{user.username && pickFirstLetter(user.username)}

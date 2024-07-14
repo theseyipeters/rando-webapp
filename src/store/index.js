@@ -1,8 +1,14 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer, { restoreState } from "./authSlice";
+import userActivitiesReducer from "./userActivitiesSlice";
+import mockDataReducer from "./mockDataSlice";
+import templatesReducer from "./templatesSlice";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
+	userActivities: userActivitiesReducer,
+	mockData: mockDataReducer,
+	templates: templatesReducer,
 	// Add other reducers here
 });
 

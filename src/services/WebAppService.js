@@ -45,6 +45,65 @@ const WebAppService = {
 			throw error;
 		}
 	},
+	getUserActivities: async () => {
+		try {
+			const response = await WebAppAPI().get(`/user-activities`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getUserActivitiesById: async (activityId) => {
+		try {
+			const response = await WebAppAPI().get(`/user-activities/${activityId}`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getMockDataGenerated: async () => {
+		try {
+			const response = await WebAppAPI().get(`/mock-data`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getMockDataGenerated: async (mockDataId) => {
+		try {
+			const response = await WebAppAPI().get(`/mock-data/${mockDataId}`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getTemplates: async () => {
+		try {
+			const response = await WebAppAPI().get(`/templates`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getTemplateById: async (templateId) => {
+		try {
+			const response = await WebAppAPI().get(`/templates/${templateId}`);
+
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	},
 };
 
 export default WebAppService;
