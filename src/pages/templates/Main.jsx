@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserActivities } from "../../store/userActivitiesSlice";
-import Stars from "../../svgs/Stars";
+import { getTemplates } from "../../store/templatesSlice";
 import { Link } from "react-router-dom";
-import Logs from "../../data/Logs.json";
-import LogItem from "../dashboard/components/LogItem";
+import Stars from "../../svgs/Stars";
+import MockDataItem from "../mock-data/MockDataItem";
+import TemplateItem from "./TemplateItem";
 import ghostGif from "../../assets/ghost.gif";
 
 const ITEMS_PER_PAGE = 10;
 
-export default function Main() {
+const Main = () => {
 	const [currentPage, setCurrentPage] = useState(1);
-
 	const dispatch = useDispatch();
-	const activities = useSelector((state) => state.userActivities.activities);
-	const status = useSelector((state) => state.userActivities.status);
-	const error = useSelector((state) => state.userActivities.error);
+	const templates = useSelector((state) => state.templates.templates);
+	const status = useSelector((state) => state.templates.status);
+	const error = useSelector((state) => state.templates.error);
 
 	useEffect(() => {
 		if (status === "idle") {
-			dispatch(getUserActivities());
+			dispatch(getTemplates());
 		}
 	}, [status, dispatch]);
 
-	const { data } = activities;
+	console.log(templates);
+
+	const { data } = templates;
 
 	const totalPages = Math.ceil(data?.length / ITEMS_PER_PAGE);
 
@@ -31,7 +32,7 @@ export default function Main() {
 		setCurrentPage(newPage);
 	};
 
-	const paginatedActivities = data?.slice(
+	const paginatedTemplates = data?.slice(
 		(currentPage - 1) * ITEMS_PER_PAGE,
 		currentPage * ITEMS_PER_PAGE
 	);
@@ -39,7 +40,7 @@ export default function Main() {
 	return (
 		<div className="mt-[120px] mb-[20px] flex flex-col gap-8 border w-full mx-[20px] bg-white rounded-lg p-5 md:p-10 overflow-hidden font-matter">
 			<div className="w-full flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-				<h1 className="text-2xl font-semibold">Activity Log</h1>
+				<h1 className="text-2xl font-semibold">Templates</h1>
 
 				<div className="flex flex-row gap-3">
 					<div className="w-fit min-w-36">
@@ -61,7 +62,7 @@ export default function Main() {
 
 			<div className="flex flex-col gap-4 overflow-auto h-full">
 				<div className="h-full overflow-auto">
-					{paginatedActivities?.length === 0 ? (
+					{paginatedTemplates?.length === 0 ? (
 						<div className="border border-black/30 rounded-2xl flex flex-col gap-3 min-h-[400px] lg:min-h-full max-h-full overflow-scroll items-center justify-center">
 							<div className="flex flex-col gap-0 items-center justify-center w-full">
 								<div className="w-[180px] opacity-80">
@@ -72,7 +73,7 @@ export default function Main() {
 									/>
 								</div>
 								<div className="-mt-3 w-fit flex flex-col items-center gap-2">
-									<h1>No activities yet</h1>
+									<h1>No templates created yet</h1>
 
 									<div className="w-fit min-w-48">
 										<Link
@@ -87,14 +88,13 @@ export default function Main() {
 						</div>
 					) : (
 						<div className="flex flex-col gap-3 h-full overflow-scroll">
-							{paginatedActivities?.map((activity) => (
+							{paginatedTemplates?.map((template) => (
 								<div
-									key={activity.id}
+									key={template.id}
 									className="cursor-pointer hover:text-black/40 transition-all duration-300 ease-in-out">
-									<LogItem activity={activity} />
+									<TemplateItem template={template} />
 								</div>
 							))}
-
 							<div className="flex justify-center mt-auto">
 								<button
 									className={`${
@@ -131,4 +131,6 @@ export default function Main() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Main;
