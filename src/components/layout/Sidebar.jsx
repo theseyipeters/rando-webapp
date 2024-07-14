@@ -23,11 +23,11 @@ export default function Sidebar() {
 			link: "/activity-log",
 			isClickable: true,
 		},
-		{
-			name: "Mock Servers",
-			link: "/mock-servers",
-			isClickable: false,
-		},
+		// {
+		// 	name: "Mock Servers",
+		// 	link: "/mock-servers",
+		// 	isClickable: false,
+		// },
 		{
 			name: "Mock Data",
 			link: "/mock-data",
@@ -38,11 +38,11 @@ export default function Sidebar() {
 			link: "/templates",
 			isClickable: true,
 		},
-		{
-			name: "Saved",
-			link: "/saved",
-			isClickable: true,
-		},
+		// {
+		// 	name: "Saved",
+		// 	link: "/saved",
+		// 	isClickable: true,
+		// },
 		{
 			name: "Profile",
 			link: "/profile",
@@ -115,7 +115,7 @@ export default function Sidebar() {
 					isCollapsed ? "hidden" : "block"
 				}`}>
 				<ul className="flex flex-col w-full text-center">
-					<NavLink
+					{/* <NavLink
 						to="/trash"
 						className={({ isActive }) =>
 							`${
@@ -126,11 +126,11 @@ export default function Sidebar() {
 							e.preventDefault();
 						}}>
 						Trash
-					</NavLink>
+					</NavLink> */}
 
 					<button
 						onClick={handleLogout}
-						className="cursor-pointer px-[45px] h-[50px] py-3 font-light text-center text-red-700 hover:bg-red-700 hover:text-white-1">
+						className="cursor-pointer px-[45px] h-[50px] py-3 font-light text-center text-red-600 hover:bg-red-700 hover:text-white-1">
 						Logout
 					</button>
 				</ul>

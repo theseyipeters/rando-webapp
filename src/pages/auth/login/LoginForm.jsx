@@ -84,7 +84,7 @@ export const LoginForm = () => {
 							className="w-full flex flex-col gap-8"
 							onSubmit={handleSubmit}>
 							<InputField3
-								placeholder="Input email address"
+								placeholder="Input username"
 								name="username"
 								value={formData.username}
 								onChange={handleInputChange}

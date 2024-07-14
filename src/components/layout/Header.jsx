@@ -124,7 +124,7 @@ export default function Header() {
 							</div>
 
 							<div className="ml-auto mt-[50px] flex flex-row items-center gap-4">
-								<span className="w-[60px] h-[60px] rounded-full bg-black text-white flex items-center justify-center text-3xl">
+								<span className="w-[50px] h-[50px] rounded-full bg-black text-white flex items-center justify-center text-3xl">
 									J
 								</span>
 
