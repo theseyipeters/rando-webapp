@@ -10,7 +10,6 @@ const WebAppAPI = () => {
 		};
 	}
 	const baseURL = import.meta.env.VITE_ACCESS_CODE_URL;
-	console.log(baseURL);
 
 	const axiosInstance = axios.create({
 		baseURL: baseURL,

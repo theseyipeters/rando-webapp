@@ -67,7 +67,7 @@ export const SignUpForm = () => {
 		if (
 			validatePasswords(formData.password, formData.confirm_password, setErrors)
 		) {
-			console.log(formData);
+			// console.log(formData);
 			setIsSubmitting(true);
 
 			try {

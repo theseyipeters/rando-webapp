@@ -22,7 +22,7 @@ export default function Main() {
 		}
 	}, [status, dispatch]);
 
-	console.log(mockData);
+	// console.log(mockData);
 
 	const { mock_data } = mockData;
 

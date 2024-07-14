@@ -22,7 +22,7 @@ const Main = () => {
 		}
 	}, [status, dispatch]);
 
-	console.log(templates);
+	// console.log(templates);
 
 	const { data } = templates;
 
