@@ -23,7 +23,7 @@ export const JSONForm = () => {
 
 	const generateMockData = async (e) => {
 		e.preventDefault();
-		console.log(schema);
+		// console.log(schema);
 		try {
 			const jsonData = JSON.parse(schema.trim());
 
@@ -32,7 +32,7 @@ export const JSONForm = () => {
 				jsonData,
 				provider
 			);
-			console.log(generateDataResponse);
+			// console.log(generateDataResponse);
 			setMockData(JSON.stringify(generateDataResponse.data, null, 2));
 		} catch (error) {
 			console.error("Invalid JSON schema format: ", error);
@@ -40,7 +40,7 @@ export const JSONForm = () => {
 	};
 	const generateMockDataWithAuth = async (e) => {
 		e.preventDefault();
-		console.log(schema);
+		// console.log(schema);
 		try {
 			const jsonData = JSON.parse(schema.trim());
 
@@ -49,7 +49,7 @@ export const JSONForm = () => {
 				jsonData,
 				provider
 			);
-			console.log(generateDataResponse);
+			// console.log(generateDataResponse);
 			setMockData(JSON.stringify(generateDataResponse.data, null, 2));
 		} catch (error) {
 			console.error("Invalid JSON schema format: ", error);
