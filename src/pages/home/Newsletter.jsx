@@ -8,10 +8,10 @@ export default function Newsletter() {
 			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[33px] flex flex-row justify-between items-center pr-8">
 				<input
 					type="text"
-					placeholder="kylexy@example.com"
-					className="border-none w-full h-[92px]  bg-transparent placeholder:text-[#5D5D5D] focus:outline-none text-3xl"
+					placeholder="Enter your email"
+					className="border-none w-full h-[92px]  bg-transparent placeholder:text-[#5D5D5D] font-matter focus:outline-none text-xl md:text-3xl lg:text-4xl xl:text-5xl"
 				/>
-				<button className=" w-[100px] hover:scale-[1.4] transition-scale duration-500 ease-out">
+				<button className="w-[60px] md:w-[100px] lg:w-[150px] hover:scale-[1.4] transition-scale duration-500 ease-out">
 					<ArrowRightMd />
 				</button>
 			</div>

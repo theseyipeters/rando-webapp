@@ -11,19 +11,19 @@ export default function InputField2({
 }) {
 	return (
 		<div className="w-full">
-			<div className="w-full h-fit border-b border-white-1 mt-[13px] flex flex-row justify-between items-center">
+			<div className="w-full h-fit border-b border-white-1 mt-[13px] flex flex-row justify-between ga-2 items-center">
 				<input
 					type={type}
 					onChange={onChange}
 					placeholder={placeholder}
 					value={value}
 					name={name}
-					className="border-none w-full h-[48px] font-matter py-5  bg-transparent  placeholder:text-white-1/30 focus:outline-none text-xl text-white-1"
+					className="border-none w-full h-[48px] font-matter py-5  bg-transparent  placeholder:text-white-1/30 focus:outline-none text-sm md:text-xl text-white-1"
 				/>
 
 				<button
 					onClick={onClick}
-					className="hover:scale-[1.4] transition-scale duration-500 ease-out text-white-1 w-[60px]">
+					className="w-[30px] md:w-[60px] hover:scale-[1.4] transition-scale duration-500 ease-out text-white-1">
 					<ArrowRightMd />
 				</button>
 			</div>

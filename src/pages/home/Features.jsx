@@ -12,11 +12,11 @@ export default function Features() {
 				<p className="font-light">
 					Create, customize, and download mock data for your projects with ease.
 				</p>
-				<h1 className="text-5xl font-medium tracking-[-1.2px]">
+				<h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-1.2px]">
 					Why use Rando?
 				</h1>
 			</div>
-			<div className="mt-[44px] card-container grid grid-cols-2 w-full items-center gap-6 justify-between flex-wrap">
+			<div className="mt-[44px] card-container grid grid-cols-1 md:grid-cols-2 w-full items-center gap-6 justify-between flex-wrap">
 				<FeatureCard
 					icon={<UI />}
 					title={`User Friendly Interface`}

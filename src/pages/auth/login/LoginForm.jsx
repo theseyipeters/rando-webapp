@@ -11,6 +11,8 @@ import InputField3 from "../../../components/ui/InputField3";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import GlobalButton from "../../../components/ui/GlobalButton";
 import WebAppService from "../../../services/WebAppService";
+import RandoLogo from "../../../svgs/RandoLogo";
+import RandoLogo2 from "../../../svgs/RandoLogo2";
 
 export const LoginForm = () => {
 	const [formData, setFormData] = useState({
@@ -68,20 +70,34 @@ export const LoginForm = () => {
 	};
 
 	return (
-		<div className="w-full px-[40px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
-			<div className="w-full flex flex-col items-center justify-center">
-				<div className="text-white-2 absolute top-[10%] right-[40px] md:right-[50px] lg:right-[90px] xl:right-[120px]">
+		<div className="w-full px-[20px] sm:px-[40px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
+			<div className="w-full flex flex-col items-center justify-start md:justify-center">
+				<div className="hidden lg:block text-white-2 absolute top-[5%] lg:top-[10%] right-[40px] md:right-[50px] lg:right-[90px] xl:right-[120px]">
 					<CountryDropdown />
 				</div>
 
-				<div className="w-full h-full text-white-1 flex flex-col gap-10">
-					<div className="flex flex-col gap-2">
-						<h3 className="text-4xl font-medium">Welcome</h3>
-						<p className="text-2xl font-light">Sign in to your Rando account</p>
+				<div className="px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px] absolute top-[5%] flex lg:hidden flex-row items-center w-full justify-between">
+					<Link
+						className="text-white-1 w-[100px] md:w-[150px]"
+						to={"/"}>
+						<RandoLogo />
+					</Link>
+
+					<div className="text-white-2 ">
+						<CountryDropdown />
+					</div>
+				</div>
+
+				<div className="w-full h-full text-white-1 flex flex-col gap-5 md:gap-10">
+					<div className="flex flex-col gap-1 md:gap-2">
+						<h3 className="text-2xl md:text-4xl font-medium">Welcome</h3>
+						<p className="text-lg lg:text-2xl font-light">
+							Sign in to your Rando account
+						</p>
 					</div>
 					<div>
 						<form
-							className="w-full flex flex-col gap-8"
+							className="w-full flex flex-col gap-4 md:gap-8"
 							onSubmit={handleSubmit}>
 							<InputField3
 								placeholder="Input username"
@@ -98,6 +114,7 @@ export const LoginForm = () => {
 
 							<div className="mt-4">
 								<GlobalButton
+									className={`flex items-center justify-center`}
 									type="submit"
 									variant="secondary"
 									state={isSubmitting ? "loading" : "default"}
@@ -109,8 +126,8 @@ export const LoginForm = () => {
 						</form>
 					</div>
 
-					<div className="flex flex-col gap-2 mt-[44px]">
-						<p className="text-2xl font-light">
+					<div className="flex flex-col items-center justify-center gap-2 mt-[24px] md:mt-[44px]">
+						<p className="text-lg lg:text-2xl font-light">
 							Don’t have an account?{" "}
 							<Link
 								to="/auth/signup"
@@ -122,7 +139,7 @@ export const LoginForm = () => {
 				</div>
 
 				{/* Links for terms, privacy policy, data agreement */}
-				<div className="text-white-1 flex flex-row gap-3 absolute bottom-[10%] font-light">
+				<div className="text-white-1 flex flex-row gap-3 absolute bottom-[5%] md:bottom-[10%] font-light">
 					<Link className="font-light text-sm hover:text-teal-1 underline-offset-2 hover:underline">
 						Terms of use
 					</Link>

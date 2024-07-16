@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserActivities } from "../../store/userActivitiesSlice";
 import Stars from "../../svgs/Stars";
 import { Link } from "react-router-dom";
-import Logs from "../../data/Logs.json";
 import LogItem from "../dashboard/components/LogItem";
 import ghostGif from "../../assets/ghost.gif";
 

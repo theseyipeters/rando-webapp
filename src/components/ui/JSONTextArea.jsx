@@ -22,16 +22,16 @@ export default function JSONTextArea({
 
 	return (
 		<div className={`w-full`}>
-			<label className="text-2xl">{label}</label>
+			<label className="text-lg md:text-xl lg:text-2xl">{label}</label>
 
-			<aside className="bg-[#282C34] font-mono">
+			<aside className="bg-[#282C34] font-mono relative">
 				<CodeMirror
 					value={editorValue}
 					theme={"light"}
 					height={100}
 					aria-autocomplete={"inline"}
 					autoCorrect="true"
-					className={`mt-[13px]  border border-[#5d5d5d] w-full bg-transparent placeholder:text-[#5D5D5D]/10 placeholder:font-mono focus:outline-none text-base`}
+					className={`mt-[13px]  border border-[#5d5d5d] w-full bg-transparent placeholder:text-[#5D5D5D]/10 placeholder:font-mono focus:outline-none text-xs md:text-sm lg:text-base`}
 					extensions={[json()]}
 					onChange={(value, viewUpdate) => {
 						setEditorValue(value);
@@ -43,19 +43,11 @@ export default function JSONTextArea({
 					spellCheck={true}
 					style={{ fontFamily: "monospace" }}
 				/>
-			</aside>
 
-			{/* 
-			<Editor
-				height="490px"
-				theme="vs-dark"
-				defaultLanguage="json"
-				defaultValue=""
-				onChange={(value, viewUpdate) => {
-					setEditorValue(value);
-					onChange(value);
-				}}
-			/> */}
+				<div className="bg-white-1 w-fit absolute right-1 top-1">
+					<button>Copy</button>
+				</div>
+			</aside>
 		</div>
 	);
 }
