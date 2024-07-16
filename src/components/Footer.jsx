@@ -10,10 +10,10 @@ export default function Footer() {
 		<footer className="bg-white-1 text-black-2 pt-[60px] text-sm md:text-base lg:text-base xl:text-lg px-[20px] md:px-[50px] lg:px-[90px] xl:px-[120px]">
 			<div className="w-full flex flex-col md:flex-row items-start md:items-start">
 				<div className="w-full md:w-[40%] flex flex-col gap-5">
-					<div className="hidden md:block">
+					<div className="hidden md:block w-[150px] lg:w-[200px]">
 						<RandoLogo2 />
 					</div>
-					<div className="block md:hidden lg:hidden">
+					<div className="block md:hidden lg:hidden w-[150px] lg:w-[200px]">
 						<RandoLogo2 />
 					</div>
 					<div className="font-light flex flex-col gap-3 mt-4">

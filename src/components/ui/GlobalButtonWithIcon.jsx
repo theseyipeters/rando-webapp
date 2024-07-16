@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-const GlobalButton = ({
+const GlobalButtonWithIcon = ({
 	children,
 	className,
 	onClick,
@@ -11,6 +11,7 @@ const GlobalButton = ({
 	size,
 	type,
 	state,
+	icon,
 	...rest
 }) => {
 	const buttonClass = clsx(
@@ -29,6 +30,10 @@ const GlobalButton = ({
 		"lg:text-lg",
 		"xl:text-xl",
 		"flex",
+		"flex-row",
+		"items-center",
+		"justify-center",
+		"gap-3",
 		// "hover:mt-[-2px]",
 		{
 			// Variant styles
@@ -40,7 +45,7 @@ const GlobalButton = ({
 
 			// Size styles
 			"py-2 px-4 text-sm": size === "sm",
-			"px-6 py-3 text-lg min-w-32 lg:min-w-48 h-[50px]": size === "md",
+			"px-6 py-3 text-lg min-w-fit lg:min-w-48 h-[50px]": size === "md",
 			"py-4 px-8": size === "lg",
 
 			// State styles
@@ -72,6 +77,7 @@ const GlobalButton = ({
 					onClick={onClick}
 					disabled={state === "inactive"}
 					{...rest}>
+					<span>{icon}</span>
 					{children}
 				</button>
 			</>
@@ -79,4 +85,4 @@ const GlobalButton = ({
 	}
 };
 
-export default GlobalButton;
+export default GlobalButtonWithIcon;

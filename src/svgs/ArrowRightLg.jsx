@@ -3,8 +3,8 @@ import React from "react";
 export default function ArrowRightLg() {
 	return (
 		<svg
-			width="112"
-			height="113"
+			width="100%"
+			height="100%"
 			viewBox="0 0 112 113"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">

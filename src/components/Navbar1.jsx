@@ -47,20 +47,25 @@ export default function Navbar1() {
 				)}
 
 				{!showMenu && (
-					<div onClick={handleToggleMenu}>
+					<div
+						className="w-[35px]"
+						onClick={handleToggleMenu}>
 						<MenuIcon />
 					</div>
 				)}
 
 				{showMenu && (
 					<div
-						style={{ opacity: 0.95, transition: "opacity 1s ease" }}
+						// style={{ opacity: 0.95, transition: "opacity 1s ease" }}
 						className="fixed flex flex-col gap-6 md:items-center md:justify-center min-h-screen w-full bg-white-1 text-black-1 top-0 left-0 shadow-md p-[30px] z-40 overflow-y-auto ">
-						<div className="absolute top-5 left-10 mt-4 flex flex-row items-end gap-2">
+						<div className="absolute top-[100px] left-[30px] mt-4 flex flex-row items-end gap-2">
 							<CountryDropdown />
 						</div>
 
-						<ul className="mt-[184px] flex flex-col gap-10">
+						<ul
+							className={`${
+								isAuthenticated ? "mt-auto" : "mt-[200px]"
+							}  flex flex-col items-start md:items-center gap-10`}>
 							{navLinks.map((link, index) => (
 								<Link
 									to={link.link}
@@ -71,9 +76,24 @@ export default function Navbar1() {
 							))}
 						</ul>
 
-						<button className="w-full mt-[24px] bg-black-1 text-white-1 px-6 py-6 min-w-32 rounded-full text-2xl">
-							Login
-						</button>
+						{isAuthenticated ? (
+							<div
+								className={`w-full flex flex-row items-center justify-between gap-3 ${
+									isAuthenticated ? " mt-auto" : ""
+								}`}>
+								<p className="text-base">Signed in as</p>
+								<Link
+									to={"/dashboard"}
+									target="_blank"
+									className="text-lg hover:underline underline-offset-4">
+									@{user.username}
+								</Link>
+							</div>
+						) : (
+							<button className="w-full mt-[24px] bg-black-1 text-white-1 px-6 py-4 md:py-5 lg:py-6 min-w-32 rounded-full text-2xl">
+								Login
+							</button>
+						)}
 
 						<div
 							onClick={handleToggleMenu}
@@ -120,6 +140,7 @@ export default function Navbar1() {
 					) : (
 						<Link to={"/auth/login"}>
 							<GlobalButton
+								className={`flex items justify-center`}
 								variant={`secondary`}
 								state={`default`}
 								size={`md`}>

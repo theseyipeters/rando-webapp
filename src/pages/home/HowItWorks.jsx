@@ -9,13 +9,13 @@ const HowItWorks = () => {
 				<p className="font-light">
 					Create, customize, and download mock data for your projects with ease.
 				</p>
-				<h1 className="text-5xl font-medium tracking-[-1.2px]">
+				<h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-1.2px]">
 					How Rando works
 				</h1>
 			</div>
 
-			<div className="mt-[44px] flex flex-col lg:flex-row gap-4 justify-between h-[520px] text-white-1">
-				<div className="h-full border w-full flex flex-col gap-4">
+			<div className="mt-[44px] flex flex-col lg:flex-row gap-4 justify-between  h-fit lg:h-[520px] text-white-1">
+				<div className="h-full w-full flex flex-col gap-4">
 					<div className="h-[50%] border bg-black-1 rounded-xl p-5 flex flex-col gap-4">
 						<h3 className="text-xl font-medium">Select Data Type</h3>
 						<p className="font-light text-sm md:text-base lg:text-base">

@@ -34,7 +34,7 @@ const FaqItem = ({ question, answer, isOpen, onAccordionClick }) => {
 					maxHeight: isOpen ? `${contentHeight}px` : "0px",
 				}}
 				className={`transition-max-height duration-500 ease-in-out overflow-hidden`}>
-				<p className=" pb-4 text-gray-4 text-[14px] md:text-[16px] lg:text-[16px]">
+				<p className=" pt-2 pb-4 text-gray-4 text-[14px] md:text-[16px] lg:text-[16px]">
 					{answer}
 				</p>
 			</div>

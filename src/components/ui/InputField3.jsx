@@ -18,7 +18,7 @@ export default function InputField3({
 					placeholder={placeholder}
 					value={value}
 					name={name}
-					className="border-none w-full h-[48px] font-matter py-5 px-2 bg-transparent placeholder:font-light placeholder:text-lg placeholder:text-white-1/30 focus:outline-none text-xl text-white-1"
+					className="border-none w-full h-[48px] font-matter py-5 px-2 bg-transparent placeholder:font-light  placeholder:text-white-1/30 focus:outline-none text-base md:text-base lg:text-lg text-white-1"
 				/>
 			</div>
 		</div>
