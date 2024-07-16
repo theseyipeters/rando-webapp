@@ -24,12 +24,12 @@ export default function PasswordInput({
 					placeholder={placeholder}
 					value={value}
 					name={name}
-					className="border-none w-full h-[48px] font-matter py-5 px-2  bg-transparent placeholder:font-light placeholder:text-white-1/30 focus:outline-none placeholder:text-lg text-xl text-white-1"
+					className="border-none w-full h-[48px] font-matter py-5 px-2  bg-transparent placeholder:font-light placeholder:text-white-1/30 focus:outline-none text-base md:text-base lg:text-lg text-white-1"
 				/>
 
 				<button
 					onClick={handleToggleShowPassword}
-					className="hover:scale-[1.1] transition-scale duration-500 ease-out text-white-1 w-[60px] font-light text-sm">
+					className="hover:scale-[1.1] transition-scale duration-500 ease-out text-white-1 w-[60px] font-light text-xs md:text-sm">
 					{showPassword ? "HIDE" : "SHOW"}
 				</button>
 			</div>

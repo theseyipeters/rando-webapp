@@ -26,7 +26,7 @@ const CountryDropdown = () => {
 		<div className="flex flex-row items-center gap-2 country-dropdown">
 			<div className="flex flex-row items-center">
 				<select
-					className="leading-3 text-2xl lg:text-sm bg-transparent border-none cursor-pointer focus:outline-none"
+					className="leading-3 text-xl md:text-2xl lg:text-sm bg-transparent border-none cursor-pointer focus:outline-none"
 					value={selectedCountry}
 					onChange={handleChange}>
 					<option

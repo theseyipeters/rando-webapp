@@ -21,20 +21,20 @@ export default function Dropdown({
 
 	return (
 		<div className="w-full relative">
-			<label className="text-2xl">{label}</label>
-			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[13px] flex flex-row justify-between items-center pr-8">
+			<label className="text-lg md:text-xl lg:text-2xl">{label}</label>
+			<div className="w-full h-fit border-b border-[#5d5d5d] mt-[13px] flex flex-row justify-between gap-2 items-center pr-2  md:pr-4 lg:pr-8">
 				<input
 					type="text"
 					value={selectedOption}
 					onClick={toggleDropdown}
 					readOnly
 					placeholder="Select an option"
-					className="font-matter border-none w-full h-[92px] bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-3xl cursor-pointer"
+					className="font-matter  w-full h-[60px] md:h-[92px] border-none bg-transparent placeholder:text-[#5D5D5D]/30 focus:outline-none text-xl md:text-2xl lg:text-3xl cursor-pointer pl-2"
 				/>
 
 				<button
 					onClick={toggleDropdown}
-					className={`w-[50px] hover:scale-[1.4] transition-scale duration-500 ease-out ${
+					className={`w-[30px] md:w-[50px] hover:scale-[1.4] transition-scale duration-500 ease-out ${
 						isOpen ? "rotate-180" : ""
 					}`}>
 					<DownMd />
@@ -46,7 +46,7 @@ export default function Dropdown({
 						<li
 							key={index}
 							onClick={() => handleOptionClick(option)}
-							className="cursor-pointer py-2 px-6 text-2xl hover:bg-gray-200 h-[100px] flex items-center">
+							className="cursor-pointer py-2 px-6 text-xl md:text-2xl hover:bg-gray-200 h-[70px] md:h-[100px] flex items-center">
 							{option}
 						</li>
 					))}

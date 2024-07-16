@@ -12,6 +12,7 @@ import { PLACEHOLDER } from "../templates/Templates";
 import { useProvider } from "../context/ProviderContext";
 import { useSelector } from "react-redux";
 import WebAppService from "../services/WebAppService";
+import GlobalButtonWithIcon from "./ui/GlobalButtonWithIcon";
 
 export const JSONForm = () => {
 	const [selectedTemplate, setSelectedTemplate] = useState("");
@@ -77,14 +78,14 @@ export const JSONForm = () => {
 
 	return (
 		<div className="w-full flex flex-col lg:flex-row gap-6">
-			<div className="w-full mt-[80px]">
+			<div className="w-full">
 				<JSONTextArea
 					value={schema}
 					onChange={(newValue) => setSchema(newValue)}
 					label={`Enter input data:`}
 					placeholder={PLACEHOLDER}
 				/>
-				<div className="w-full flex flex-row items-center justify-between  mt-[13px]">
+				<div className="w-full flex flex-col md:flex-row items-center justify-between gap-x-3 mt-[13px]">
 					<div className={` ${mockData ? "w-full" : "w-full lg:w-[30%]"}`}>
 						<Dropdown2
 							isAuthenticated={isAuthenticated}
@@ -95,7 +96,7 @@ export const JSONForm = () => {
 							setSelectedOption={setSelectedTemplate}
 						/>
 					</div>
-					<div className="flex flex-row gap-3">
+					<div className="w-full md:w-fit flex flex-col  md:flex-row items-center justify-between mt-8 md:mt-0 gap-3">
 						<GlobalButton
 							onClick={(e) => {
 								e.preventDefault();
@@ -107,16 +108,17 @@ export const JSONForm = () => {
 							size={`md`}>
 							Clear
 						</GlobalButton>
-						<GlobalButton
+						<GlobalButtonWithIcon
 							className="flex flex-row gap-2  w-full items-center justify-center"
 							onClick={
 								isAuthenticated ? generateMockDataWithAuth : generateMockData
 							}
 							variant={`primary`}
 							state={`default`}
-							size={`md`}>
-							<Stars /> Generate
-						</GlobalButton>
+							size={`md`}
+							icon={<Stars />}>
+							Generate
+						</GlobalButtonWithIcon>
 					</div>
 				</div>
 			</div>
@@ -130,15 +132,7 @@ export const JSONForm = () => {
 						/>
 					</div>
 
-					<div className="flex flex-row gap-2 ml-auto mt-[13px]">
-						<GlobalButton
-							className={`flex flex-row items-center gap-2`}
-							variant={`teal`}
-							state={`default`}
-							size={`md`}>
-							<Download />
-							Save results
-						</GlobalButton>
+					<div className="w-full md:w-fit flex flex-col  md:flex-row items-center justify-between mt-8 md:mt-0 gap-3">
 						<GlobalButton
 							onClick={() => {
 								setMockData();
@@ -149,6 +143,14 @@ export const JSONForm = () => {
 							size={`md`}>
 							Clear
 						</GlobalButton>
+						<GlobalButtonWithIcon
+							className={`flex flex-row items-center gap-2`}
+							variant={`teal`}
+							state={`default`}
+							size={`md`}
+							icon={<Download />}>
+							<span className="">Save results</span>
+						</GlobalButtonWithIcon>
 					</div>
 				</div>
 			)}

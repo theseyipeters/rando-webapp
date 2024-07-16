@@ -32,7 +32,7 @@ export default function Dropdown2({
 					onClick={toggleDropdown}
 					readOnly
 					placeholder={placeholder}
-					className="font-matter border-none w-full h-[42px] bg-transparent font-light placeholder:text-[#5D5D5D]/30 focus:outline-none text-base lg:text-xl cursor-pointer"
+					className="font-matter border-none w-full h-[42px] bg-transparent font-light placeholder:text-[#5D5D5D]/30 focus:outline-none text-sm md:text-xl lg:text-xl cursor-pointer"
 				/>
 				<button
 					onClick={toggleDropdown}
@@ -52,15 +52,15 @@ export default function Dropdown2({
 								option.isProtected && !isAuthenticated
 									? "cursor-not-allowed"
 									: "cursor-pointer"
-							} relative py-2 px-6 text-base lg:text-xl hover:bg-gray-200 h-[70px] flex items-center font-light text-black-2`}>
+							} relative py-2 px-6 text-sm md:text-xl lg:text-xl hover:bg-gray-200 h-[60px] md:h-[70px] flex items-center font-light text-black-2`}>
 							<span
-								className={`${
+								className={`text-sm md:text-xl lg:text-xl ${
 									option.isProtected && !isAuthenticated ? "opacity-35" : ""
 								}`}>
 								{option.name}
 							</span>
 							{option.isProtected && !isAuthenticated && (
-								<span className="absolute top-3 right-5 text-xs border-0.5 border-red-600 text-red-600 rounded-full py-1 px-3">
+								<span className="absolute top-3 right-5 text-[10px] md:text-xs border-0.5 border-red-600 text-red-600 rounded-full py-[2px] md:py-1 px-3">
 									Sign in required
 								</span>
 							)}

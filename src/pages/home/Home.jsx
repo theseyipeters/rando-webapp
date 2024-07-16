@@ -11,7 +11,7 @@ import Footer from "../../components/Footer";
 const Home = () => {
 	return (
 		<main className="w-full h-full  bg-white-2">
-			<div className="w-full bg-black-2 h-[800px] rounded-bl-3xl rounded-br-3xl">
+			<div className="w-full bg-black-2 h-fit lg:h-[800px] rounded-bl-3xl rounded-br-3xl">
 				<Navbar1 />
 				<Hero />
 			</div>
