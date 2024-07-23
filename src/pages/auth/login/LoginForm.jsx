@@ -12,22 +12,42 @@ import PasswordInput from "../../../components/ui/PasswordInput";
 import GlobalButton from "../../../components/ui/GlobalButton";
 import WebAppService from "../../../services/WebAppService";
 import RandoLogo from "../../../svgs/RandoLogo";
+import { validatePasswords } from "../../../utils/validation";
 
 export const LoginForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    username: "",
+    password: "",
+  });
+  const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
+
+    // Perform validation as user types
+    if (name === "confirm_password") {
+      const errorMessage = validatePasswords(
+        formData.password,
+        value,
+        setErrors
+      );
+      if (errorMessage === "") {
+        setSuccessMessage("Passwords match!");
+      } else {
+        setSuccessMessage("");
+      }
+    } else {
+      setErrors({ ...errors, [name]: "" });
+      setSuccessMessage("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -101,13 +121,13 @@ export const LoginForm = () => {
                 placeholder="Input username"
                 name="username"
                 value={formData.username}
-                onChange={handleInputChange}
+                onChange={handleChange}
               />
               <PasswordInput
                 placeholder="Enter your password"
                 name="password"
                 value={formData.password}
-                onChange={handleInputChange}
+                onChange={handleChange}
               />
 
               <div className="mt-4">
