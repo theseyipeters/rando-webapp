@@ -35,14 +35,6 @@ export const SignUpForm = () => {
     if (valid && step < 5) setStep(step + 1);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -190,7 +182,7 @@ export const SignUpForm = () => {
                     placeholder="Enter your password"
                     name="password"
                     value={formData.password}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                   {errors.password && (
                     <p className="text-red-500 mt-4">{errors.password}</p>
@@ -210,7 +202,7 @@ export const SignUpForm = () => {
                     placeholder="Verify password"
                     name="confirm_password"
                     value={formData.confirm_password}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                   />
                   {errors.confirm_password && (
                     <p className="text-red-500 mt-4">
