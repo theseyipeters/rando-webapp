@@ -103,3 +103,41 @@ textarea {
 	background-color: #242424;
 	color: white;
 }
+
+.toast-container {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.toast {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 0.25rem;
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.modal-overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.868);
+}
